@@ -13,11 +13,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ToggleButton;
 
 import com.orm.SugarContext;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import fag.com.br.selfservice.Entity.ItemPedido;
+import fag.com.br.selfservice.Entity.PedidoVenda;
+import fag.com.br.selfservice.Entity.Produto;
+import fag.com.br.selfservice.adapter.AdapterListaItem;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView lvItemProduto;
+    AdapterListaItem adapter;
+    public static PedidoVenda pedidoVenda;
+    public static List<ItemPedido> itens = new ArrayList<>();
+    List<Produto> produtos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +52,29 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        pedidoVenda = new PedidoVenda();
+        PedidoVenda outropedido;
+        try{
+            outropedido = PedidoVenda.last(PedidoVenda.class);
+        }catch(android.database.sqlite.SQLiteException s){
+            outropedido = new PedidoVenda();
+            outropedido.setNrPedido(0);
+        }
+
+        if (outropedido == null){
+            outropedido = new PedidoVenda();
+            outropedido.setNrPedido(0);
+        }
+        pedidoVenda.setDtEmissao(new Date());
+        pedidoVenda.setNrPedido(outropedido.getNrPedido() +1);
+        pedidoVenda.setStCancelado(false);
+        pedidoVenda.setVlPedido(0);
+        pedidoVenda.setPsPedido(0);
+        pedidoVenda.setItens(itens);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        carregaLista();
     }
 
     @Override
@@ -81,8 +121,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_adicional) {
             Intent intent = new Intent(this, AdicionalActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_produto_adicional) {
+            Intent intent = new Intent(this, ProdutoAdicionalActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -95,4 +136,10 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void carregaLista() {
+        produtos = Produto.listAll(Produto.class);//Lista com Ordenacao
+        adapter = new AdapterListaItem(this,produtos);
+        lvItemProduto.setAdapter(adapter);//Amarro a ListView com o Adapter criado
+    }
+
 }

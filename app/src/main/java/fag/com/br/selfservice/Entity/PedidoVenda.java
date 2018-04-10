@@ -1,15 +1,18 @@
 package fag.com.br.selfservice.Entity;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Bruno on 09/04/2018.
  */
 
+@Table(name = "pedidovenda")
 public class PedidoVenda extends SugarRecord implements Serializable{
     @Unique
     private int nrPedido;
@@ -17,7 +20,15 @@ public class PedidoVenda extends SugarRecord implements Serializable{
     private double vlPedido;
     private double psPedido;
     private boolean stCancelado;
+    private List<ItemPedido> itens;
 
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
 
     @Override
     public String toString() {

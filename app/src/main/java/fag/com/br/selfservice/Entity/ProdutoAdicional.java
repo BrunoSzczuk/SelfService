@@ -2,6 +2,7 @@ package fag.com.br.selfservice.Entity;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.MultiUnique;
+import com.orm.dsl.Table;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  */
 
 @MultiUnique("produto, adicional")
+@Table(name = "produtoadicional")
 public class ProdutoAdicional extends SugarRecord implements Serializable {
     private Produto produto;
     private Adicional adicional;

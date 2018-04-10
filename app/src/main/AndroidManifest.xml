@@ -14,7 +14,7 @@
             android:value="bancoSelfService.db" />
         <meta-data
             android:name="VERSION"
-            android:value="3" />
+            android:value="5" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -39,6 +39,10 @@
         <activity
             android:name=".AdicionalActivity"
             android:label="@string/title_activity_adicional"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProdutoAdicionalActivity"
+            android:label="@string/title_activity_produto_adicional"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

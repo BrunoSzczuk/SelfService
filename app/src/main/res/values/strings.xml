@@ -103,4 +103,7 @@
     </string>
     <string name="title_activity_">Activity</string>
     <string name="title_activity_adicional">AdicionalActivity</string>
+    <string name="title_activity_produto_adicional">ProdutoAdicionalActivity</string>
+    <string name="etProduto">Produto</string>
+    <string name="btAdicionar">Adicionar</string>
 </resources>
