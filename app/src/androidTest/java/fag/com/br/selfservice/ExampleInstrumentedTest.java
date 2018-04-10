@@ -20,7 +20,7 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
+        //fiadinho
         assertEquals("fag.com.br.selfservice", appContext.getPackageName());
     }
 }
