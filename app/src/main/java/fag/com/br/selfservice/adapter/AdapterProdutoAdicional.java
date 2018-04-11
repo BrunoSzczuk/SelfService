@@ -48,7 +48,7 @@ public class AdapterProdutoAdicional extends BaseAdapter {
         ProdutoAdicional p = produtoList.get(position);
         view =  inflater.inflate(R.layout.item_produto_adicional, null);
 
-        ((TextView) view.findViewById(R.id.tvCdProduto)).setText(String.valueOf(p.getProduto().getCdProduto()));
+        ((TextView) view.findViewById(R.id.tvCdProduto)).setText(p.getProduto().getCdProduto().toString());
         ((TextView) view.findViewById(R.id.tvDsProduto)).setText(p.getProduto().getDsProduto().toString());
         ((TextView) view.findViewById(R.id.etCdAdicional)).setText(p.getAdicional().getCdTipo().toString());
         ((TextView) view.findViewById(R.id.etDsAdicional)).setText(p.getAdicional().getDsTipo());

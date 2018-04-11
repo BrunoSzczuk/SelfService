@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ToggleButton;
@@ -28,11 +29,13 @@ import fag.com.br.selfservice.Entity.ItemPedido;
 import fag.com.br.selfservice.Entity.PedidoVenda;
 import fag.com.br.selfservice.Entity.Produto;
 import fag.com.br.selfservice.adapter.AdapterListaItem;
+import fag.com.br.selfservice.adapter.AdapterProduto;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ListView lvItemProduto;
+    ListView lvItemProduto ;
+    Button btAdicionarList;
     AdapterListaItem adapter;
     public static PedidoVenda pedidoVenda;
     public static List<ItemPedido> itens = new ArrayList<>();
@@ -53,14 +56,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         pedidoVenda = new PedidoVenda();
-        PedidoVenda outropedido;
-        try{
-            outropedido = PedidoVenda.last(PedidoVenda.class);
-        }catch(android.database.sqlite.SQLiteException s){
-            outropedido = new PedidoVenda();
-            outropedido.setNrPedido(0);
-        }
-
+        PedidoVenda outropedido = PedidoVenda.last(PedidoVenda.class);
         if (outropedido == null){
             outropedido = new PedidoVenda();
             outropedido.setNrPedido(0);
@@ -72,9 +68,11 @@ public class MainActivity extends AppCompatActivity
         pedidoVenda.setPsPedido(0);
         pedidoVenda.setItens(itens);
 
+        lvItemProduto = findViewById(R.id.lvItemProduto);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         carregaLista();
+
     }
 
     @Override

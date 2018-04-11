@@ -106,4 +106,8 @@
     <string name="title_activity_produto_adicional">ProdutoAdicionalActivity</string>
     <string name="etProduto">Produto</string>
     <string name="btAdicionar">Adicionar</string>
+    <string name="tvAdicional">Adicional</string>
+    <string name="tvDefault">Padrão</string>
+    <string name="etCodigoProduto">Código Produto:</string>
+    <string name="etCodigoAdicional">Código Adicional:</string>
 </resources>

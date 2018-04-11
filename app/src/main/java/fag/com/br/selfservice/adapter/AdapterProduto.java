@@ -34,7 +34,7 @@ public class AdapterProduto extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return produtoList.get(position);
     }
 
     @Override
@@ -52,5 +52,9 @@ public class AdapterProduto extends BaseAdapter {
         ((TextView) view.findViewById(R.id.etVlProduto)).setText(NumberFormat.getCurrencyInstance().format(p.getVlProduto()));
         ((TextView) view.findViewById(R.id.etPsBruto)).setText(new DecimalFormat("##,#00").format(p.getPsBruto()));
         return view;
+    }
+
+    public int getPosition(Produto p){
+        return produtoList.indexOf(p);
     }
 }

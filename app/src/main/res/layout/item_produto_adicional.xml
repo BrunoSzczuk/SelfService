@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/etCodigo"/>
+            android:text="@string/etCodigoProduto"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_marginLeft="@dimen/marginLeft"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/etCodigo"/>
+            android:text="@string/etCodigoAdicional"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

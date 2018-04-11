@@ -41,6 +41,7 @@
         android:layout_marginTop="@dimen/marginTop"
         android:layout_marginLeft="@dimen/marginLeft"
         android:hint="@string/etValorProduto"
+        android:inputType="numberDecimal"
         android:id="@+id/etVlProduto"/>
         <TextView
             android:layout_width="match_parent"
@@ -48,12 +49,12 @@
             android:layout_marginLeft="@dimen/marginLeft"
             android:layout_marginTop="@dimen/marginTop"
             android:text="@string/tbAtivo"
-            android:inputType="numberDecimal"
             android:textColor="@color/colorPrimary"/>
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_marginLeft="@dimen/marginLeft"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:id="@+id/tgAtivo"
         android:hint="@string/tbAtivo"/>
 
