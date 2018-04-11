@@ -71,7 +71,7 @@ public class ProdutoAdicionalActivity extends AppCompatActivity {
                     produtoAdicional.setStDefault(tgAtivo.isChecked());
                     produtoAdicional.save();
                     produtoAdicional = new ProdutoAdicional();
-                    Mensagem.ExibirMensagem(ProdutoAdicionalActivity.this,"Salvo com sucess",1);
+                    Mensagem.ExibirMensagem(ProdutoAdicionalActivity.this,"Salvo com sucesso",1);
                     carregaLista();
 
                 }

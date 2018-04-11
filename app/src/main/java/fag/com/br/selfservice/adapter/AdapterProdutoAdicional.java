@@ -35,7 +35,7 @@ public class AdapterProdutoAdicional extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return produtoList.get(position);
     }
 
     @Override

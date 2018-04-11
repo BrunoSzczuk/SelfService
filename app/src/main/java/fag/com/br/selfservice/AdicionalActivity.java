@@ -20,6 +20,7 @@ import java.util.List;
 import fag.com.br.selfservice.Entity.Adicional;
 import fag.com.br.selfservice.Entity.Produto;
 import fag.com.br.selfservice.adapter.AdapterProduto;
+import fag.com.br.selfservice.util.Mensagem;
 
 public class AdicionalActivity extends AppCompatActivity {
 
@@ -48,6 +49,7 @@ public class AdicionalActivity extends AppCompatActivity {
                 adicional.setCdTipo(etCodigo.getText().toString());
                 adicional.setDsTipo(etDescricao.getText().toString());
                 adicional.save();
+                Mensagem.ExibirMensagem(AdicionalActivity.this,"Salvo com sucesso",1);
                 adicional = new Adicional();
                 carregaLista();
             }

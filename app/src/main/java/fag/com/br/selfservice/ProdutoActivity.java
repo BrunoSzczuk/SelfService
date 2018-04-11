@@ -23,6 +23,7 @@ import java.util.List;
 import fag.com.br.selfservice.Entity.Adicional;
 import fag.com.br.selfservice.Entity.Produto;
 import fag.com.br.selfservice.adapter.AdapterProduto;
+import fag.com.br.selfservice.util.Mensagem;
 
 public class ProdutoActivity extends AppCompatActivity {
 
@@ -53,15 +54,25 @@ public class ProdutoActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                produto.setCdProduto(etCodigo.getText().toString());
-                produto.setDsProduto(etDescricao.getText().toString());
-                produto.setPsBruto(Double.parseDouble(etPsBruto.getText().toString()));
-                produto.setVlProduto(Double.parseDouble(etVlProduto.getText().toString()));
-                produto.setStAtivo(tgAtivo.isChecked());
-                produto.save();
-
-                produto = new Produto();
-                carregaLista();
+                if (etCodigo.getText().toString() == null || etCodigo.getText().toString().trim().length() < 1){
+                    Mensagem.ExibirMensagem(ProdutoActivity.this,"É necessário preencher um código",1);
+                }else if ( etDescricao.getText().toString() == null || etDescricao.getText().toString().trim().length() < 1) {
+                    Mensagem.ExibirMensagem(ProdutoActivity.this, "É necessário preencher uma descrição", 1);
+                } else if (etPsBruto.getText().toString() == null || etPsBruto.getText().toString().trim().length() < 1){
+                    Mensagem.ExibirMensagem(ProdutoActivity.this,"É necessário preencher um peso para o produto",1);
+                } else if (etVlProduto.getText().toString() == null || etVlProduto.getText().toString().trim().length() < 1){
+                    Mensagem.ExibirMensagem(ProdutoActivity.this,"É necessário preencher um valor para o produto",1);
+                } else {
+                    produto.setCdProduto(etCodigo.getText().toString());
+                    produto.setDsProduto(etDescricao.getText().toString());
+                    produto.setPsBruto(Double.parseDouble(etPsBruto.getText().toString()));
+                    produto.setVlProduto(Double.parseDouble(etVlProduto.getText().toString()));
+                    produto.setStAtivo(tgAtivo.isChecked());
+                    produto.save();
+                    Mensagem.ExibirMensagem(ProdutoActivity.this,"Salvo com sucesso",1);
+                    produto = new Produto();
+                    carregaLista();
+                }
             }
         });
         lvProduto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
