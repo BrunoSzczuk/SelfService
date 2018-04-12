@@ -43,6 +43,10 @@
         <activity
             android:name=".ProdutoAdicionalActivity"
             android:label="@string/title_activity_produto_adicional"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ListaItemActivity"
+            android:label="@string/title_activity_lista_item"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -49,7 +49,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/marginLeft"
             android:id="@+id/etPsBruto"/>
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/etQtProduto"
+            android:layout_marginLeft="@dimen/marginLeft"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:id="@+id/etQtProduto"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

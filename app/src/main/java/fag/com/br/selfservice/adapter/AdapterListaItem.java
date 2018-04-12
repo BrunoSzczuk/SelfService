@@ -3,6 +3,7 @@ package fag.com.br.selfservice.adapter;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,12 @@ import java.util.List;
 
 import fag.com.br.selfservice.Entity.Adicional;
 import fag.com.br.selfservice.Entity.ItemPedido;
+import fag.com.br.selfservice.Entity.PedidoVenda;
 import fag.com.br.selfservice.Entity.Produto;
 import fag.com.br.selfservice.Entity.ProdutoAdicional;
+import fag.com.br.selfservice.ListaItemActivity;
 import fag.com.br.selfservice.MainActivity;
+import fag.com.br.selfservice.ProdutoActivity;
 import fag.com.br.selfservice.R;
 
 /**
@@ -29,13 +33,18 @@ import fag.com.br.selfservice.R;
 
 public class AdapterListaItem extends BaseAdapter {
     List<Produto> produtoList;
+    ItemPedido itemPedido;
     LayoutInflater inflater;
-    Context con;
+    PedidoVenda pedidoVenda;
 
-    public AdapterListaItem(Context context, List<Produto> produtoList) {
+    public AdapterListaItem(Context context, List<Produto> produtoList, ItemPedido itemPedido) {
         this.produtoList = produtoList;
+        this.itemPedido = itemPedido;
+        if (this.itemPedido == null){
+            this.itemPedido = new ItemPedido();
+        }
         inflater = LayoutInflater.from(context);
-        con = context;
+
     }
 
     @Override
@@ -62,26 +71,20 @@ public class AdapterListaItem extends BaseAdapter {
         ((TextView) view.findViewById(R.id.tvDsProduto)).setText(p.getDsProduto().toString());
         ((TextView) view.findViewById(R.id.etVlProduto)).setText(NumberFormat.getCurrencyInstance().format(p.getVlProduto()));
         ((TextView) view.findViewById(R.id.etPsBruto)).setText(new DecimalFormat("##,#00").format(p.getPsBruto()));
+        ((TextView) view.findViewById(R.id.etQtProduto)).setText(String.valueOf(itemPedido.getQtProduto()));
+
         ((Button) view.findViewById(R.id.btAdicionar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TO DO - Criar a tela na frente pra selecionar os adicionais na tela
-                final Dialog dialog = new Dialog(con);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                //dialog.setContentView(R.layout); TO DO - Criar layout
-                //List<ProdutoAdicional> adicionalList = ProdutoAdicional.find pega o que selecionou
-                //for (int) nos items adicionando no radi
-                //RadioGroup rg = (RadioGroup) findby... do radiogroup criado
-                // for (int i=0; i < adicionalList i++)
-                // RadioButton rb = new Radiobutton (con);
-                // rb.setText(adicionalist.get(i));
-                //rg.addView(rb);
-                // dialog.show();
-                ItemPedido itemPedido = new ItemPedido();
-                // itemPedido.setAdicional(); pega o que ele selecionou
+
                 itemPedido.setPedidoVenda(MainActivity.pedidoVenda);
-                itemPedido.setQtProduto(1);
                 itemPedido.setVlProduto(p.getVlProduto());
+
+                Intent i = new Intent(view.getContext(), ListaItemActivity.class);
+                i.putExtra("produto",p);
+                i.putExtra("itempedido",itemPedido);
+                view.getContext().startActivity(i);
 
             }
         });

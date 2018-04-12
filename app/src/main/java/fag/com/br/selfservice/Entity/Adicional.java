@@ -25,11 +25,6 @@ public class Adicional extends SugarRecord implements Serializable {
     public Adicional() {
     }
 
-    @Override
-    public String toString() {
-        return "Codigo - " + cdTipo + " Descrição - " + dsTipo;
-    }
-
     public String getCdTipo() {
         return cdTipo;
     }
@@ -44,5 +39,10 @@ public class Adicional extends SugarRecord implements Serializable {
 
     public void setDsTipo(String dsTipo) {
         this.dsTipo = dsTipo;
+    }
+
+    @Override
+    public String toString() {
+        return " Codigo - " + cdTipo + "  - Descrição: " +dsTipo;
     }
 }

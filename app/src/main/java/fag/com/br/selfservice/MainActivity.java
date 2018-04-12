@@ -1,5 +1,6 @@
 package fag.com.br.selfservice;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     Button btAdicionarList;
     AdapterListaItem adapter;
     public static PedidoVenda pedidoVenda;
-    public static List<ItemPedido> itens = new ArrayList<>();
+    public static List<ItemPedido> itensPedido = new ArrayList<>();
     List<Produto> produtos;
 
     @Override
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         pedidoVenda.setStCancelado(false);
         pedidoVenda.setVlPedido(0);
         pedidoVenda.setPsPedido(0);
-        pedidoVenda.setItens(itens);
+        pedidoVenda.setItens(itensPedido);
 
         lvItemProduto = findViewById(R.id.lvItemProduto);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity
     }
     private void carregaLista() {
         produtos = Produto.listAll(Produto.class);//Lista com Ordenacao
-        adapter = new AdapterListaItem(this,produtos);
+        adapter = new AdapterListaItem(this,produtos,(ItemPedido) lvItemProduto.getSelectedItem());
         lvItemProduto.setAdapter(adapter);//Amarro a ListView com o Adapter criado
     }
 
